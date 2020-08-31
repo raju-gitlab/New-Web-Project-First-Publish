@@ -16,7 +16,7 @@ namespace WP.Repository.IRepository
         #endregion
 
         #region Delete
-         int DeleteUserRegistrationDetails(string UserName);
+         int DeleteUserRegistrationDetails(string UserName, string Password);
         #endregion
 
 

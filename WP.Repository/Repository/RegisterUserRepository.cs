@@ -20,14 +20,25 @@ namespace WP.Repository.Repository
         {
             string Connection = ConfigurationManager.ConnectionStrings["Dev"].ConnectionString;
             SqlConnection Con = new SqlConnection(Connection);
-            string Querry = "INSERT INTO  RegistrationDetails VALUES(@FirstName,@Last_Name,@Password,@Confirm_Password,GETDATE())";
-            SqlCommand cmd = new SqlCommand(Querry, Con);
+            //string Querry = "INSERT INTO UserRegistrationDetails  VALUES (@UserName,@FirstName,@LastName,@Gender,@Password,@ConfirmPassword,@Email,@PhoneNumber,@DateOfBirth,@Address,@Town,@Region,@ZipCode,@Country,GETDATE())";
+            SqlCommand cmd = new SqlCommand("SP_UserRegistrationDetails", Con);
+            cmd.CommandType = CommandType.StoredProcedure;
 
+            cmd.Parameters.AddWithValue("@UserName", registerData.UserName);
             cmd.Parameters.AddWithValue("@FirstName", registerData.FirstName);
-            cmd.Parameters.AddWithValue("@Last_Name", registerData.Last_Name);
+            cmd.Parameters.AddWithValue("@LastName", registerData.LastName);
+            cmd.Parameters.AddWithValue("@Gender", registerData.Gender);
             cmd.Parameters.AddWithValue("@Password", registerData.Password);
-            cmd.Parameters.AddWithValue("@Confirm_Password", registerData.Confirm_Password);
-           // cmd.Parameters.AddWithValue("@Registration_Time", registerData.Registration_Time);
+            cmd.Parameters.AddWithValue("@ConfirmPassword", registerData.ConfirmPassword);
+            cmd.Parameters.AddWithValue("@Email", registerData.Email);
+            cmd.Parameters.AddWithValue("@PhoneNumber", registerData.PhoneNumber);
+            cmd.Parameters.AddWithValue("@DateOfBirth", registerData.DateOfBirth);
+            cmd.Parameters.AddWithValue("@Address", registerData.Address);
+            cmd.Parameters.AddWithValue("@Town", registerData.Town);
+            cmd.Parameters.AddWithValue("@Region", registerData.Region);
+            cmd.Parameters.AddWithValue("@ZipCode", registerData.ZipCode);
+            cmd.Parameters.AddWithValue("@Country", registerData.Country);
+           cmd.Parameters.AddWithValue("@RegistrationTime", registerData.RegistrationTime);
             Con.Open();
             int i = cmd.ExecuteNonQuery();
             Con.Close();
@@ -37,8 +48,10 @@ namespace WP.Repository.Repository
                 return -1;
         }
         #endregion
+
+
         #region Delete
-        public int DeleteUserRegistrationDetails(string UserName)
+        public int DeleteUserRegistrationDetails(string UserName, string Password)
         {
             string Connection = ConfigurationManager.ConnectionStrings["dev"].ToString();
             try
@@ -49,6 +62,7 @@ namespace WP.Repository.Repository
 
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.AddWithValue("@UserName", UserName);
+                    cmd.Parameters.AddWithValue("@Password", Password);
                   //  cmd.Parameters.AddWithValue("@Password", Password);
 
                     con.Open();
@@ -68,6 +82,6 @@ namespace WP.Repository.Repository
         }
         #endregion
 
-
     }
+       
 }

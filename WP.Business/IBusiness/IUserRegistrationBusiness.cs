@@ -15,7 +15,7 @@ namespace WP.Business.IBusiness
         #endregion
 
         #region Delete
-        int DeleteUserRegistrationDetails(string UserName);
+        int DeleteUserRegistrationDetails(string UserName, string Password);
         #endregion
     }
 }

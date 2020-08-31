@@ -46,11 +46,13 @@ namespace WebProject.Controllers
 
         #region Delete
         [HttpDelete]
-        public IHttpActionResult DeleteDetails([FromBody]string UserName )
+        [Route("api/Details/UserName/Password")]
+        //public IHttpActionResult DeleteDetails([FromBody]RemoveUserRegister removeUser)
+        public IHttpActionResult DeleteDetails([FromBody]string UserName , string Password)
         {
             try
             {
-                int result = this._userRegistrationBusiness.DeleteUserRegistrationDetails(UserName);
+                int result = this._userRegistrationBusiness.DeleteUserRegistrationDetails(UserName , Password);
                 if (result > 1)
                     return this.Content(HttpStatusCode.OK, "Data Deleted Successfully");
                 else
