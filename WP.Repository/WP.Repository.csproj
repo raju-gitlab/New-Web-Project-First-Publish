@@ -31,6 +31,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="CommonApplicationFramework">
+      <HintPath>..\packages\Dependency\CommonApplicationFramework.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
@@ -43,9 +46,15 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Class1.cs" />
+    <Compile Include="IRepository\IChangePasswordRepository.cs" />
+    <Compile Include="IRepository\ICheckUserSubscriptionRepository.cs" />
+    <Compile Include="IRepository\IMembershipRepository.cs" />
     <Compile Include="IRepository\IRegisterUserRepository.cs" />
     <Compile Include="IRepository\IUserLoginRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repository\ChangePasswordRepository.cs" />
+    <Compile Include="Repository\CheckUserSubscriptionRepository.cs" />
+    <Compile Include="Repository\MembershipRepository.cs" />
     <Compile Include="Repository\RegisterUserRepository.cs" />
     <Compile Include="Repository\UserLoginRepository.cs" />
   </ItemGroup>

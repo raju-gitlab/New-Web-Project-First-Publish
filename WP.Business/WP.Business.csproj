@@ -31,6 +31,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="CommonApplicationFramework">
+      <HintPath>..\packages\Dependency\CommonApplicationFramework.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.Practices.ServiceLocation, Version=1.3.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\CommonServiceLocator.1.3\lib\portable-net4+sl5+netcore45+wpa81+wp8\Microsoft.Practices.ServiceLocation.dll</HintPath>
     </Reference>
@@ -66,9 +69,15 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\UnityConfig.cs" />
+    <Compile Include="Business\ChangePasswordBusiness.cs" />
+    <Compile Include="Business\CheckUserSubscriptionBusiness.cs" />
+    <Compile Include="Business\MembershipBusiness.cs" />
     <Compile Include="Business\UserLoginBusiness.cs" />
     <Compile Include="Business\UserRegistrationBusiness.cs" />
     <Compile Include="Class1.cs" />
+    <Compile Include="IBusiness\IChangePasswordBusiness.cs" />
+    <Compile Include="IBusiness\ICheckUserSubscriptionBusiness.cs" />
+    <Compile Include="IBusiness\IMembershipBusiness.cs" />
     <Compile Include="IBusiness\IUserLoginBusiness.cs" />
     <Compile Include="IBusiness\IUserRegistrationBusiness.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

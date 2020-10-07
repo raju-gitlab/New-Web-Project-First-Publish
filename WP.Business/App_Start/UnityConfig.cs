@@ -24,6 +24,11 @@ namespace WP.Business
 
             container.RegisterType<IRegisterUserRepository, RegisterUserRepository>();
             container.RegisterType<IUserRegistrationBusiness, UserRegistrationBusiness>();
+
+            container.RegisterType<IMembershipBusiness, MembershipBusiness>();
+            container.RegisterType<IMembershipRepository, MembershipRepository>();
+            container.RegisterType<ICheckUserSubscriptionRepository, CheckUserSubscriptionRepository>();
+            container.RegisterType<ICheckUserSubscriptionBusiness, CheckUserSubscriptionBusiness>();
             //GlobalConfiguration.Configuration.DependencyResolver = new UnityDependencyResolver(container);
             config.DependencyResolver = new UnityDependencyResolver(container);
         }
