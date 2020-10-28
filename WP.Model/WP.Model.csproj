@@ -47,6 +47,8 @@
     <Compile Include="BaseModel.cs" />
     <Compile Include="ChangePassword.cs" />
     <Compile Include="CheckUserSubscriptionModel.cs" />
+    <Compile Include="Event\EventModel.cs" />
+    <Compile Include="Event\EventRegistrationModel.cs" />
     <Compile Include="LoginData.cs" />
     <Compile Include="MembershipModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
