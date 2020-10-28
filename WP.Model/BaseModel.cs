@@ -15,5 +15,6 @@ namespace WP.Model
         public string UserGuid { get; set; }
         public int ClientCurrentdate { get; set; }
         public string MembershipGuid { get; set; }
+        public string EventGuid { get; set; }
     }
 }

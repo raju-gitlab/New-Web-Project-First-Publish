@@ -2,9 +2,13 @@ using Microsoft.Practices.Unity;
 using System.Web.Http;
 using Unity.WebApi;
 using WP.Business.Business;
+using WP.Business.Business.Event;
 using WP.Business.IBusiness;
+using WP.Business.IBusiness.IEvent;
 using WP.Repository.IRepository;
+using WP.Repository.IRepository.IEvent;
 using WP.Repository.Repository;
+using WP.Repository.Repository.Event;
 
 namespace WP.Business
 {
@@ -29,6 +33,18 @@ namespace WP.Business
             container.RegisterType<IMembershipRepository, MembershipRepository>();
             container.RegisterType<ICheckUserSubscriptionRepository, CheckUserSubscriptionRepository>();
             container.RegisterType<ICheckUserSubscriptionBusiness, CheckUserSubscriptionBusiness>();
+
+            container.RegisterType<IEventBookingRepository, EventBookingRepository>();
+            container.RegisterType<IEventBookingBusiness, EventBookingBusiness>();
+
+            container.RegisterType<IEventBusiness, EventBusiness>();
+            container.RegisterType<IEventRepository, EventRepository>();
+
+            container.RegisterType<ICheckEventRepository, CheckEventRepository>();
+            container.RegisterType<ICheckEventBusiness, CheckEventBusiness>();
+
+
+
             //GlobalConfiguration.Configuration.DependencyResolver = new UnityDependencyResolver(container);
             config.DependencyResolver = new UnityDependencyResolver(container);
         }
