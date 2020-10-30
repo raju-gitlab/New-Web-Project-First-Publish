@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using WP.Model;
 using WP.Model.Event;
 using WP.Repository.IRepository;
+using WP.Tools.Utilities.Exceptions;
 
 namespace WP.Repository.Repository
 {
@@ -54,9 +55,9 @@ namespace WP.Repository.Repository
                     }
                 }
             }
-            catch(Exception ex)
+            catch(BusinessExceptionEXCS bEX)
             {
-                throw new Exception("Error", ex);
+                throw new BusinessExceptionEXCS("tEst Exception", bEX);
             }
         }
         #endregion

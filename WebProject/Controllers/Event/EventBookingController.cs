@@ -48,7 +48,7 @@ namespace WebProject.Controllers.Event
 
         #region POST
 
-        #region BookEventTicket
+        #region BookEvent
         [HttpPost]
         public IHttpActionResult BookEvent(EventRegistrationModel bookEvent)
         {

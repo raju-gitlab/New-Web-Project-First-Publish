@@ -10,11 +10,15 @@ namespace WP.Model.Event
     {
         public int Id { get; set; }
         public int EventId { get; set; }
+        public string Email { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public int TicketQuantity { get; set; }
         public string  PhoneNumber { get; set; }
+        public string RemainSeats { get; set; }
         public string TicketId { get; set; }
         public string RegistrationStatus { get; set; }
+        public int EventScheduleID { get; set; }
+        public DateTimeOffset BookingDate { get; set; }
     }
 }

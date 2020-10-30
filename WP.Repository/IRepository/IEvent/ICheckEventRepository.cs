@@ -12,5 +12,9 @@ namespace WP.Repository.IRepository.IEvent
         #region CheckEvent
         bool CheckEventAvailability(string EventGuid);
         #endregion
+
+        #region CheckEventBooking
+        bool CheckEventBooking(string Email, string PhoneNumber);
+        #endregion
     }
 }

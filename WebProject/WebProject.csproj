@@ -348,6 +348,10 @@
       <Project>{b044c499-01b9-468b-a798-f811afcc5ec0}</Project>
       <Name>WP.Model</Name>
     </ProjectReference>
+    <ProjectReference Include="..\WP.Tools.Utilities\WP.Tools.Utilities.csproj">
+      <Project>{5A0B289A-6A80-444C-82D6-6BDCFECF13A9}</Project>
+      <Name>WP.Tools.Utilities</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

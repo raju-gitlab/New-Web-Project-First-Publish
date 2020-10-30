@@ -69,6 +69,11 @@ namespace WP.Repository.Repository.Event
                     cmd.Parameters.AddWithValue("@LastName", addNewBooking.LastName);
                     cmd.Parameters.AddWithValue("@TicketQuantity", addNewBooking.TicketQuantity);
                     cmd.Parameters.AddWithValue("@PhoneNumber", addNewBooking.PhoneNumber);
+                    cmd.Parameters.AddWithValue("@RemainSeats", addNewBooking.RemainSeats);
+                    cmd.Parameters.AddWithValue("@RegistrationStatus", addNewBooking.RegistrationStatus);
+                    cmd.Parameters.AddWithValue("@UserGuid", addNewBooking.UserGuid);
+                    cmd.Parameters.AddWithValue("@EventScheduleID", addNewBooking.EventScheduleID);
+                    cmd.Parameters.AddWithValue("@Email", addNewBooking.Email);
                     int i = Convert.ToInt32(cmd.ExecuteScalar());
                     if (i > 0)
                         return i;

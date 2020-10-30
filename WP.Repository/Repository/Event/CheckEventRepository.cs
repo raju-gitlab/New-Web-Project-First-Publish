@@ -48,5 +48,42 @@ namespace WP.Repository.Repository.Event
             }
         }
         #endregion
+        /// <summary>
+        /// Check EventBooking For per Useronly once time on a Day
+        /// </summary>
+        /// <param name="Email"></param>
+        /// <param name="PhoneNumber"></param>
+        /// <returns></returns>
+        public bool CheckEventBooking(string Email, string PhoneNumber)
+        {
+           try
+            {
+                string CS = ConfigurationManager.ConnectionStrings["DEV"].ConnectionString;
+                using (SqlConnection con = new SqlConnection(CS))
+                {
+                    con.Open();
+                    string Querry = QueryConfig.BookQuerySettings["CheckEventBookingPerDay"].ToString();
+                    using (SqlCommand cmd = new SqlCommand(Querry, con))
+                    {
+                        cmd.CommandType = CommandType.Text;
+                        cmd.Parameters.Add(new SqlParameter("@Email", Email));
+                        cmd.Parameters.Add(new SqlParameter("@PhoneNumber", PhoneNumber));
+                        int i = Convert.ToInt32(cmd.ExecuteScalar());
+                        if (i > 0)
+                        {
+                            return true;
+                        }
+                        else
+                        {
+                            return false;
+                        }
+                    }
+                }
+            }
+            catch(Exception ex)
+            {
+                throw new Exception("Error Occured", ex);
+            }
+        }
     }
 }

@@ -13,12 +13,14 @@ namespace WP.Business.Business.Event
     {
         #region Variable Declaration
         private readonly IEventBookingRepository _eventBookingRepository;
+        private readonly ICheckEventRepository _checkEventRepository;
         #endregion
 
         #region Parameterized Constructor
-        public EventBookingBusiness(IEventBookingRepository eventBookingRepository)
+        public EventBookingBusiness(IEventBookingRepository eventBookingRepository, ICheckEventRepository checkEventRepository)
         {
             this._eventBookingRepository = eventBookingRepository;
+            this._checkEventRepository =  checkEventRepository;
         }
         #endregion
 
@@ -36,7 +38,14 @@ namespace WP.Business.Business.Event
         #region BookEventTicket
         public int BookEventTicket(EventRegistrationModel addNewBooking)
         {
-            return this._eventBookingRepository.BookEventTicket(addNewBooking);
+            if(this._checkEventRepository.CheckEventBooking(addNewBooking.Email,addNewBooking.PhoneNumber))
+            {
+                return this._eventBookingRepository.BookEventTicket(addNewBooking);
+            }
+            else
+            {
+                throw new Exception("Event Already Registrated In THIS Credentials");
+            }
         }
         #endregion
 

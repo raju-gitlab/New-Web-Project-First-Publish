@@ -10,7 +10,8 @@ namespace WP.Business.IBusiness.IEvent
     public interface ICheckEventBusiness
     {
         #region CheckEvent
-        bool CheckEventAvailability(String EventGuid);
+        bool CheckEventAvailability(string EventGuid);
+        bool CheckEventBooking(string Email, string PhoneNumber);
         #endregion
     }
 }

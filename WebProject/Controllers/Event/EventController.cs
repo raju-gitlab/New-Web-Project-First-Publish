@@ -6,6 +6,7 @@ using System.Net.Http;
 using System.Web.Http;
 using WP.Business.IBusiness;
 using WP.Model;
+using WP.Tools.Utilities.Exceptions;
 
 namespace WebProject.Controllers
 {
@@ -37,9 +38,9 @@ namespace WebProject.Controllers
                 }
                 return Content(HttpStatusCode.BadRequest, Events);
             }
-            catch(Exception ex)
+            catch (BusinessExceptionEXCS bEX)
             {
-                throw new Exception("Error", ex);
+                throw new BusinessExceptionEXCS("tEst Exception", "401", "NO DEsc");
             }
         }
         #endregion
