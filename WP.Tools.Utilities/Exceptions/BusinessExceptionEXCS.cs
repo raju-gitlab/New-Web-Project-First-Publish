@@ -14,7 +14,7 @@ namespace WP.Tools.Utilities.Exceptions
         public BusinessExceptionEXCS()
         {}
         /// <summary>
-        /// 
+        /// business Exception Messege Setting Configuration
         /// </summary>
         /// <param name="message"></param>
         public BusinessExceptionEXCS(string message)

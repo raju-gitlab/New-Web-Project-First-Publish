@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace WP.Model
 {
-    public class RemoveUserRegister
+    public class RemoveUserRegisterModel
     {
         public string UserName { get; set; }
         public string Password { get; set; }

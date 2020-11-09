@@ -15,9 +15,9 @@ namespace WP.Repository.Repository
     {
 
         #region get
-        public LoginData GetLoginData(int Login_id)
+        public LoginDataModel GetLoginData(int Login_id)
         {
-            LoginData loginData = new LoginData();
+            LoginDataModel loginData = new LoginDataModel();
             string CS = ConfigurationManager.ConnectionStrings["Dev"].ConnectionString;
            try
             {
@@ -48,7 +48,7 @@ namespace WP.Repository.Repository
         #endregion
 
            #region Put 
-            public bool UpdateSettings(LoginData UpdateLogin)
+            public bool UpdateSettings(LoginDataModel UpdateLogin)
             {
             string CS = ConfigurationManager.ConnectionStrings["Dev"].ToString();
 
@@ -86,7 +86,7 @@ namespace WP.Repository.Repository
            #endregion
 
         #region Put(Update Password)
-        public bool UpdatePassword(LoginData UpdateLogin)
+        public bool UpdatePassword(LoginDataModel UpdateLogin)
         {
             string CS = ConfigurationManager.ConnectionStrings["Dev"].ToString();
 

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace WP.Model
 {
-    public class LoginData
+    public class LoginDataModel
     {
         public int Login_id { get; set; }
         public string FirstName { get; set;}

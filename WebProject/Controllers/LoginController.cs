@@ -30,7 +30,7 @@ namespace WebProject.Controllers
         {
             try
             {
-                LoginData loginData = this._userLoginBusiness.GetLoginData(Login_id);
+                LoginDataModel loginData = this._userLoginBusiness.GetLoginData(Login_id);
                 if(loginData != null)
                 {
                     return this.Content(HttpStatusCode.OK, loginData);
@@ -49,7 +49,7 @@ namespace WebProject.Controllers
         #region put(Update Details)
         [HttpPut]
         [ActionName("UpdateDetails")]
-        public IHttpActionResult UpdateDetails(LoginData UpdateLogin)
+        public IHttpActionResult UpdateDetails(LoginDataModel UpdateLogin)
         {
             bool isInserted = this._userLoginBusiness.UpdateSettings(UpdateLogin);
             try
@@ -70,7 +70,7 @@ namespace WebProject.Controllers
         #region update Password
         [HttpPut]
         [ActionName("UpdateDetail")]
-        public IHttpActionResult UpdatePassword(LoginData UpdateLogin)
+        public IHttpActionResult UpdatePassword(LoginDataModel UpdateLogin)
         {
             bool isInserted = this._userLoginBusiness.UpdatePassword(UpdateLogin);
             try

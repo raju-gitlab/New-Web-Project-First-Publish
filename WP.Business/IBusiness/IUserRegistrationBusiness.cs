@@ -11,11 +11,15 @@ namespace WP.Business.IBusiness
     {
 
         #region post
-        int UserRegistration(UserRegisterData registerData);
+        int UserRegistration(UserRegisterDataModel registerData);
         #endregion
 
         #region Delete
         int DeleteUserRegistrationDetails(string UserName, string Password);
+        #endregion
+
+        #region Check Credentials
+        bool CheckCredentials(UserRegisterDataModel checkCredentials);
         #endregion
     }
 }

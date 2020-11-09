@@ -41,8 +41,6 @@ namespace WP.Business.Business.Event
         public bool CheckEventBooking(string Email, string PhoneNumber)
         {
             List<EventRegistrationModel> eventRegistration = new List<EventRegistrationModel>();
-
-
             if (Email != null || PhoneNumber != null)
             {
                 return this._checkEventRepository.CheckEventBooking(Email, PhoneNumber);

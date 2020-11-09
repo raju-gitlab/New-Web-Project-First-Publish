@@ -221,8 +221,10 @@
     <Compile Include="Controllers\Event\EventController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
-    <Compile Include="Controllers\Trial\ImageController.cs" />
-    <Compile Include="Controllers\UserDataControl\MembershipController.cs" />
+    <Compile Include="Controllers\Image\ImageController.cs" />
+    <Compile Include="Controllers\Master\HomePageController.cs" />
+    <Compile Include="Controllers\Master\ProductController.cs" />
+    <Compile Include="Controllers\SuscriptionControl\MembershipController.cs" />
     <Compile Include="Controllers\UserRegisterController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Global.asax.cs">

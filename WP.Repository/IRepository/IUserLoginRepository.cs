@@ -10,12 +10,12 @@ namespace WP.Repository.IRepository
     public interface IUserLoginRepository
     {
         #region Get
-        LoginData GetLoginData(int Login_id);
+        LoginDataModel GetLoginData(int Login_id);
         #endregion
 
         #region Put
-        bool UpdateSettings(LoginData UpdateLogin);
-        bool UpdatePassword(LoginData UpdateLogin);
+        bool UpdateSettings(LoginDataModel UpdateLogin);
+        bool UpdatePassword(LoginDataModel UpdateLogin);
         #endregion
     }
 }

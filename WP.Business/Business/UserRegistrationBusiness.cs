@@ -22,10 +22,25 @@ namespace WP.Business.Business
         }
         #endregion
 
-        #region Post Data
-        public int UserRegistration(UserRegisterData userRegisterData)
+        #region Post User Registration Credentials
+        public int UserRegistration(UserRegisterDataModel userRegisterData)
         {
-            return _registerUserRepository.UserRegistration(userRegisterData);
+
+           try
+            {
+                if (this._registerUserRepository.CheckCredentials(userRegisterData))
+                {
+                    return _registerUserRepository.UserRegistration(userRegisterData);
+                }
+                else
+                {
+                    throw new Exception("Error");
+                }
+            }
+            catch(Exception ex)
+            {
+                throw new Exception("Error", ex);
+            }
         }
         #endregion
 
@@ -33,6 +48,13 @@ namespace WP.Business.Business
         public int DeleteUserRegistrationDetails(string UserName, string Password)
         {
             return this._registerUserRepository.DeleteUserRegistrationDetails(UserName , Password);
+        }
+        #endregion
+
+        #region Check Credentials
+        public bool CheckCredentials(UserRegisterDataModel checkCredentials)
+        {
+            return this._registerUserRepository.CheckCredentials(checkCredentials);
         }
         #endregion
 

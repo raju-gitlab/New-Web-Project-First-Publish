@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace WP.Model
 {
-    public class CheckUserSubscriptionModel : BaseModel
+    public class CheckUserSubscriptionModel : CommonBaseModel
     {
         public int UserId { get; set; }
         public int MemberShipId { get; set; }
@@ -14,5 +14,6 @@ namespace WP.Model
         public int IsSubscribed { get; set; }
         public DateTime MemberShipExpiryDate { get; set; }
         public int RemainTime { get; set; }
+        public string MembershipGuid { get; set; }
     }
 }

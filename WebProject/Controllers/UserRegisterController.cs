@@ -26,12 +26,12 @@ namespace WebProject.Controllers
 
         #region post
         [HttpPost]
-        public IHttpActionResult RegNewUser([FromBody]UserRegisterData userRegister)
+        public IHttpActionResult RegNewUser([FromBody]UserRegisterDataModel userRegister)
         {
             try
             {
                 int result = this._userRegistrationBusiness.UserRegistration(userRegister);
-                if(result > 0)
+                if(result == 0 )
                 {
                     return this.Content(HttpStatusCode.Created, "New User Data is Successfully Created");
                 }

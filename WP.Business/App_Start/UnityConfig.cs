@@ -3,12 +3,16 @@ using System.Web.Http;
 using Unity.WebApi;
 using WP.Business.Business;
 using WP.Business.Business.Event;
+using WP.Business.Business.Master;
 using WP.Business.IBusiness;
 using WP.Business.IBusiness.IEvent;
+using WP.Business.IBusiness.IMaster;
 using WP.Repository.IRepository;
 using WP.Repository.IRepository.IEvent;
+using WP.Repository.IRepository.IMaster;
 using WP.Repository.Repository;
 using WP.Repository.Repository.Event;
+using WP.Repository.Repository.Master;
 
 namespace WP.Business
 {
@@ -42,6 +46,13 @@ namespace WP.Business
 
             container.RegisterType<ICheckEventRepository, CheckEventRepository>();
             container.RegisterType<ICheckEventBusiness, CheckEventBusiness>();
+
+            container.RegisterType<IHomePageBusiness, HomePageBusiness>();
+            container.RegisterType<IHomePageRepository, HomePageRepository>();
+
+            container.RegisterType<IProductBusiness, ProductBusiness>();
+            container.RegisterType<IProductRepository, ProductRepository>();
+
 
 
 

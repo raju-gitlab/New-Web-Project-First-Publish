@@ -45,15 +45,22 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BaseModel.cs" />
-    <Compile Include="ChangePassword.cs" />
     <Compile Include="CheckUserSubscriptionModel.cs" />
     <Compile Include="Event\EventModel.cs" />
     <Compile Include="Event\EventRegistrationModel.cs" />
-    <Compile Include="LoginData.cs" />
+    <Compile Include="LoginDataModel.cs" />
+    <Compile Include="Master\CatagoryModel.cs" />
+    <Compile Include="Master\HomePageModel.cs" />
+    <Compile Include="Master\ProductModel.cs" />
+    <Compile Include="Master\ReviewModel.cs" />
+    <Compile Include="Master\SellerModel.cs" />
+    <Compile Include="Master\ServiceModel.cs" />
+    <Compile Include="Master\VendorModel.cs" />
+    <Compile Include="Master\WarrentyModel.cs" />
     <Compile Include="MembershipModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="RemoveUserRegister.cs" />
-    <Compile Include="UserRegisterData.cs" />
+    <Compile Include="RemoveUserRegisterModel.cs" />
+    <Compile Include="UserRegisterDataModel.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

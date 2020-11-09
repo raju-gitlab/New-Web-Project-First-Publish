@@ -10,12 +10,12 @@ namespace WP.Business.IBusiness
     public interface IUserLoginBusiness
     {
         #region Get
-        LoginData GetLoginData(int Login_id);
+        LoginDataModel GetLoginData(int Login_id);
         #endregion
 
         #region put
-        bool UpdateSettings(LoginData UpdateLogin);
-        bool UpdatePassword(LoginData UpdateLogin);
+        bool UpdateSettings(LoginDataModel UpdateLogin);
+        bool UpdatePassword(LoginDataModel UpdateLogin);
         #endregion
     }
 }

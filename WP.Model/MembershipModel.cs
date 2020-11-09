@@ -13,5 +13,7 @@ namespace WP.Model
         public int Price { get; set; }
         public bool IsRefundable { get; set; }
         public string MemberShipType { get; set; }
+
+        public string MembershipGuid { get; set; }
     }
 }

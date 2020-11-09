@@ -20,5 +20,6 @@ namespace WP.Model.Event
         public string RegistrationStatus { get; set; }
         public int EventScheduleID { get; set; }
         public DateTimeOffset BookingDate { get; set; }
+        public string UserGuid { get; set; }
     }
 }

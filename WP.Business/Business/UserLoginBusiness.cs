@@ -24,7 +24,7 @@ namespace WP.Business.Business
         #endregion
 
         #region get
-        public LoginData GetLoginData(int Login_id)
+        public LoginDataModel GetLoginData(int Login_id)
         {
             return this._userLoginRepository.GetLoginData(Login_id);
         }
@@ -33,14 +33,14 @@ namespace WP.Business.Business
 
         #region Put 
         #region Change all data
-        public bool UpdateSettings(LoginData UpdateLogin)
+        public bool UpdateSettings(LoginDataModel UpdateLogin)
         {
             return this._userLoginRepository.UpdateSettings(UpdateLogin);
         }
         #endregion
 
         #region Change password
-        public bool UpdatePassword(LoginData UpdateLogin)
+        public bool UpdatePassword(LoginDataModel UpdateLogin)
         {
             return this._userLoginRepository.UpdatePassword(UpdateLogin);
         }

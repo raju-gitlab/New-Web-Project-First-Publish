@@ -12,9 +12,9 @@ namespace WP.Model
         public DateTime CreatedOn { get; set; }
         public string ModifiedBy { get; set; }
         public DateTime ModifiedOn { get; set; }
+    }
+    public class CommonBaseModel
+    {
         public string UserGuid { get; set; }
-        public int ClientCurrentdate { get; set; }
-        public string MembershipGuid { get; set; }
-        public string EventGuid { get; set; }
     }
 }
