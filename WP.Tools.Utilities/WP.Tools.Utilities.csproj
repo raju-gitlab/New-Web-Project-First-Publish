@@ -42,6 +42,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Class1.cs" />
+    <Compile Include="EmailSender\EmailSender.cs" />
     <Compile Include="Exceptions\BaseExceptions.cs" />
     <Compile Include="Exceptions\BusinessExceptionEXCS.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

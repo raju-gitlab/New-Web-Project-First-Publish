@@ -4,15 +4,19 @@ using Unity.WebApi;
 using WP.Business.Business;
 using WP.Business.Business.Event;
 using WP.Business.Business.Master;
+using WP.Business.Business.OrderAndPayment;
 using WP.Business.IBusiness;
 using WP.Business.IBusiness.IEvent;
 using WP.Business.IBusiness.IMaster;
+using WP.Business.IBusiness.IOrderAndPayment;
 using WP.Repository.IRepository;
 using WP.Repository.IRepository.IEvent;
 using WP.Repository.IRepository.IMaster;
+using WP.Repository.IRepository.IOrderAndPayment;
 using WP.Repository.Repository;
 using WP.Repository.Repository.Event;
 using WP.Repository.Repository.Master;
+using WP.Repository.Repository.OrderAndPayment;
 
 namespace WP.Business
 {
@@ -53,8 +57,11 @@ namespace WP.Business
             container.RegisterType<IProductBusiness, ProductBusiness>();
             container.RegisterType<IProductRepository, ProductRepository>();
 
+            container.RegisterType<ICartBusiness, CartBusiness>();
+            container.RegisterType<ICartRepository, CartRepository>();
 
-
+            container.RegisterType<IOrderRepository, OrderRepository>();
+            container.RegisterType<IOrderBusiness, OrderBusiness>();
 
             //GlobalConfiguration.Configuration.DependencyResolver = new UnityDependencyResolver(container);
             config.DependencyResolver = new UnityDependencyResolver(container);

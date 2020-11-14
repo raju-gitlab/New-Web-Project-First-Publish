@@ -74,9 +74,11 @@
     <Compile Include="Business\Event\CheckEventBusiness.cs" />
     <Compile Include="Business\Event\EventBookingBusiness.cs" />
     <Compile Include="Business\Event\EventBusiness.cs" />
+    <Compile Include="Business\Master\CartBusiness.cs" />
     <Compile Include="Business\Master\HomePageBusiness.cs" />
     <Compile Include="Business\MembershipBusiness.cs" />
     <Compile Include="Business\Master\ProductBusiness.cs" />
+    <Compile Include="Business\OrderAndPayment\OrderBusiness.cs" />
     <Compile Include="Business\UserLoginBusiness.cs" />
     <Compile Include="Business\UserRegistrationBusiness.cs" />
     <Compile Include="Class1.cs" />
@@ -85,9 +87,11 @@
     <Compile Include="IBusiness\IEvent\ICheckEventBusiness.cs" />
     <Compile Include="IBusiness\IEvent\IEventBookingBusiness.cs" />
     <Compile Include="IBusiness\IEvent\IEventBusiness.cs" />
+    <Compile Include="IBusiness\IMaster\ICartBusiness.cs" />
     <Compile Include="IBusiness\IMaster\IHomePageBusiness.cs" />
     <Compile Include="IBusiness\IMembershipBusiness.cs" />
     <Compile Include="IBusiness\IMaster\IProductBusiness.cs" />
+    <Compile Include="IBusiness\IOrderAndPayment\IOrderBusiness.cs" />
     <Compile Include="IBusiness\IUserLoginBusiness.cs" />
     <Compile Include="IBusiness\IUserRegistrationBusiness.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -106,5 +110,6 @@
       <Name>WP.Repository</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

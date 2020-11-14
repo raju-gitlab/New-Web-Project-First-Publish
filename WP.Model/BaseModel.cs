@@ -6,15 +6,17 @@ using System.Threading.Tasks;
 
 namespace WP.Model
 {
-    public class BaseModel
-    {
-        public int CreatedBy { get; set; }
-        public DateTime CreatedOn { get; set; }
-        public string ModifiedBy { get; set; }
-        public DateTime ModifiedOn { get; set; }
-    }
     public class CommonBaseModel
     {
         public string UserGuid { get; set; }
+        public string Guid { get; set; }
     }
+    public class BaseModel : CommonBaseModel
+    {
+        public int CreatedBy { get; set; }
+        public DateTimeOffset CreatedOn { get; set; }
+        public string ModifiedBy { get; set; }
+        public DateTime ModifiedOn { get; set; }
+    }
+    
 }

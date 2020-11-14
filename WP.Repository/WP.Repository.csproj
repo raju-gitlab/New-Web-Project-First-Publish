@@ -51,9 +51,11 @@
     <Compile Include="IRepository\IEvent\ICheckEventRepository.cs" />
     <Compile Include="IRepository\IEvent\IEventBookingRepository.cs" />
     <Compile Include="IRepository\IEvent\IEventRepository.cs" />
+    <Compile Include="IRepository\IMaster\ICartRepository.cs" />
     <Compile Include="IRepository\IMaster\IHomePageRepository.cs" />
     <Compile Include="IRepository\IMaster\IProductRepository.cs" />
     <Compile Include="IRepository\IMembershipRepository.cs" />
+    <Compile Include="IRepository\IOrderAndPayment\IOrderRepository.cs" />
     <Compile Include="IRepository\IRegisterUserRepository.cs" />
     <Compile Include="IRepository\IUserLoginRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -62,9 +64,11 @@
     <Compile Include="Repository\Event\CheckEventRepository.cs" />
     <Compile Include="Repository\Event\EventBookingRepository.cs" />
     <Compile Include="Repository\Event\EventRepository.cs" />
+    <Compile Include="Repository\Master\CartRepository.cs" />
     <Compile Include="Repository\Master\HomePageRepository.cs" />
     <Compile Include="Repository\Master\ProductRepository.cs" />
     <Compile Include="Repository\MembershipRepository.cs" />
+    <Compile Include="Repository\OrderAndPayment\OrderRepository.cs" />
     <Compile Include="Repository\RegisterUserRepository.cs" />
     <Compile Include="Repository\UserLoginRepository.cs" />
   </ItemGroup>
