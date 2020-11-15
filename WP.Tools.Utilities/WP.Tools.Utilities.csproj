@@ -45,6 +45,7 @@
     <Compile Include="EmailSender\EmailSender.cs" />
     <Compile Include="Exceptions\BaseExceptions.cs" />
     <Compile Include="Exceptions\BusinessExceptionEXCS.cs" />
+    <Compile Include="PasswordHasher\PasswordHasher.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
