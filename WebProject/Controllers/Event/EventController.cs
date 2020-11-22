@@ -40,7 +40,7 @@ namespace WebProject.Controllers
             }
             catch (BusinessExceptionEXCS bEX)
             {
-                throw new BusinessExceptionEXCS("tEst Exception", "401", "NO DEsc");
+                throw new BusinessExceptionEXCS("tEst Exception", bEX);
             }
         }
         #endregion

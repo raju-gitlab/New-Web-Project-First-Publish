@@ -69,7 +69,6 @@ namespace WP.Repository.Repository.Master
         #region GetRelatedProducts
         public List<ProductBaseModel> RelatedProducts(string ProductName, string CatagoryName)
         {
-            ProductBaseModel relatedProducts = null;
             List<ProductBaseModel> productBases = new List<ProductBaseModel>();
             string CS = ConfigurationManager.ConnectionStrings["DEV"].ConnectionString;
             using (SqlConnection con = new SqlConnection(CS))

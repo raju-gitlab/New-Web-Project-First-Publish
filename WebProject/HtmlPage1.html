@@ -2,47 +2,34 @@
 <html>
 <head>
     <meta charset="utf-8" />
-    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script src="Scripts/jquery-3.3.1.js"></script>
     <title>Session Storage</title>
     <script type="text/javascript">
         $(document).ready(function () {
-            var ulEmployees = $('#ulEmployees');
+            var ulEmployees = $('ulEmployees');
 
             $('#btn').click(function () {
                 $.ajax({
                     type: 'GET',
-                    url: 'api/Product/GetProduct?Guid=8F03DAE9-DA1B-4D7E-964F-4049F0371529',
+                    url: 'api/UserRegister/getByEmail?EmailId=rajubasakcoc14@gmail.com',
                     dataType: 'json',
                     success: function (data) {
                         ulEmployees.empty();
-                        $.each(data, function (index, val) {
-                            var va = val.ProductName;
-                            var vb = val.ProductGUID;
-                            var vc = val.BasePrice;
-                            var vd = val.OldPrice;
-                            var ve = val.CatagoryName;
-                            ulEmployees.append('<li>' + va + '</li>')
-                            ulEmployees.append('<li>' + vb + '</li>')
-                            ulEmployees.append('<li>' + vc + '</li>')
-                            ulEmployees.append('<li>' + vd + '</li>')
-                            ulEmployees.append('<li>' + ve + '</li>')
-                            sessionStorage.setItem("FirstName", va);
-                            window.sessionStorage.setItem("EntryTicketId", vb);
-
+                        $.each(data, function (Index, val) {
+                            var fullname = val.FirstName;
+                            ulEmployees.append('<li>' + fullname + '</li>');
+                            window.sessionStorage.setItem("UserName", fullname);
+                            window.sessionStorage.setItem("UserName2", "fullname");
                         });
                     }
                 });
             });
-
-
         });
     </script>
 </head>
 <body>
     <input id="btn" type="button" value="View List" />
-    <input id="btn1" type="button" value="View Product" />
     <ul id="ulEmployees"></ul>
-    <ul id="ulProduct"></ul>
 </body>
 </html>
 

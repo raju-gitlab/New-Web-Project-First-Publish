@@ -22,11 +22,28 @@ namespace WP.Business.Business
         }
         #endregion
 
+        #region Get
+        #region GetAccountsByUserId
+        public UserModel getUserByEmailId(string EmailId)
+        {
+            return this._registerUserRepository.getUserByEmailId(EmailId);
+        }
+        #endregion
+
+        #region GetAccountsByPhoneNumber
+        public UserModel getUserByPhNumber(string PhoneNumber)
+        {
+            return this._registerUserRepository.getUserByPhNumber(PhoneNumber);
+        }
+        #endregion
+        #endregion
+
+        #region Post
         #region Post User Registration Credentials
         public int UserRegistration(UserRegisterDataModel userRegisterData)
         {
 
-           try
+            try
             {
                 if (this._registerUserRepository.CheckCredentials(userRegisterData))
                 {
@@ -34,14 +51,56 @@ namespace WP.Business.Business
                 }
                 else
                 {
-                    throw new Exception("Error");
+                    throw new Exception();
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 throw new Exception("Error", ex);
             }
         }
+        #endregion
+
+        #endregion
+
+        #region Put
+        #region Update Password
+        #region ChangeUsingExistingPassword
+        public bool updateUsingPassword(ResetPasswordModel resetpassword)
+        {
+            return this._registerUserRepository.updateUsingPassword(resetpassword);
+        }
+        #endregion
+
+        #region Forget Password
+        public bool ForgetPassword(string Email)
+        {
+            return this._registerUserRepository.ForgetPassword(Email);
+        }
+
+        #endregion
+
+        #region Change Password
+        public bool ChangePassword(string Email, string VerificationId, ResetPasswordModel resetPassword)
+        {
+            return this._registerUserRepository.ChangePassword(Email,VerificationId, resetPassword);
+        }
+        #endregion
+        #endregion
+
+        #region ActiveUserAccount
+        public bool IsActiveUser(string VerificationId)
+        {
+            if(!string.IsNullOrEmpty(VerificationId))
+            {
+                return this._registerUserRepository.IsActiveUser(VerificationId);
+            }
+            else
+            {
+                throw new Exception("VerificationId cannot be null");
+            }
+        }
+        #endregion
         #endregion
 
         #region Delete Data

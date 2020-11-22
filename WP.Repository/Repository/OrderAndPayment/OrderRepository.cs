@@ -15,25 +15,21 @@ namespace WP.Repository.Repository.OrderAndPayment
 {
     public class OrderRepository : IOrderRepository
     {
-        string OrderCode = Guid.NewGuid().ToString().Replace('-', ' ').Substring(1,10).Trim();
+        readonly string OrderCode = Guid.NewGuid().ToString().Replace("-",string.Empty).Substring(1,10);
         public string Email { get; set; }
         public string OrderId { get; set; }
         #region Post
         #region OrderProduct
         public OrderEditModel Orderproduct(OrderEditModel Order)
         {
-            string OrderId = Guid.NewGuid().ToString().Replace('-','5').Substring(1,10).ToUpper();
+            string OrderId = Guid.NewGuid().ToString().Replace("-",string.Empty).Substring(1,10).ToUpper();
             try
             {
-                EmailSender es = new EmailSender();
                 string CS = ConfigurationManager.ConnectionStrings["DEV"].ConnectionString;
                 using (SqlConnection con = new SqlConnection(CS))
                 {
                     con.Open();
-                    //string query = QueryConfig.BookQuerySettings[""].ToString();
-                    string query = "INSERT INTO Orders (CustomerName, ContactNumber, Address, City, StateId, Landmark, ZipCode, ALT_Landmark, ALT_ContactNumber, OrderId, CreatedOn, CreatedBy, CustomerId, ProductColorId)"+
-                     "VALUES"+
-                     "(@CustomerName, @ContactNumber, @Address, @City, @StateId, @Landmark, @ZipCode, @ALT_Landmark, @ALT_ContactNumber, @OrderId, GETUTCDATE(), @UserGuid, (SELECT Regid from UserRegistrationDetails WHERE UserGuid = @UserGuid), (SELECT Id from Group_Product_color WHERE ProductColorGuid = @Guid))";
+                    string query = QueryConfig.BookQuerySettings["OrderProduct"].ToString();
                     using (SqlCommand cmd = new SqlCommand(query, con))
                     {
                         cmd.CommandType = CommandType.Text;
@@ -53,25 +49,18 @@ namespace WP.Repository.Repository.OrderAndPayment
                         int i = cmd.ExecuteNonQuery();
                         if (i > 0)
                         {
+                            EmailSender.GenericEmail(Email, OrderId, "Order Confirmation", "Your Order is Confirmed Successfully With OrderId" + OrderId);
                             con.Close();
                             using (SqlConnection connection = new SqlConnection(CS))
                             {
                                 connection.Open();
-                                //string Query = "UPDATE Group_Product_color SET ProductStockQuantity = (ProductStockQuantity - @OrderQuantity) WHERE ProductColorGuid = @Guid"; //QueryConfig.BookQuerySettings[""].ToString();
-                                string Query = "SELECT Email from UserRegistrationDetails WHERE UserGuid = @UserGuid";
+                                string Query = "UPDATE Group_Product_color SET ProductStockQuantity = (ProductStockQuantity - @OrderQuantity) WHERE ProductColorGuid = @Guid"; //QueryConfig.BookQuerySettings[""].ToString();
                                 using (SqlCommand command = new SqlCommand(Query, connection))
                                 {
-                                    command.CommandType = CommandType.Text;
-                                    command.Parameters.Add(new SqlParameter("@UserGuid", Order.UserGuid));
-                                    SqlDataReader rdr = command.ExecuteReader();
-                                    if (rdr.Read())
-                                    {
-                                        Email = rdr["Email"].ToString();
-                                    }
-                                    es.emailSender(Email, OrderId);
-                                    //command.Parameters.AddWithValue("@OrderQuantity", Order.OrderQuantity);
-                                    //command.Parameters.Add(new SqlParameter("@Guid", Order.Guid));
-                                    //int j = command.ExecuteNonQuery();
+                                    cmd.CommandType = CommandType.Text;
+                                    command.Parameters.AddWithValue("@OrderQuantity", Order.OrderQuantity);
+                                    command.Parameters.Add(new SqlParameter("@Guid", Order.Guid));
+                                    int j = command.ExecuteNonQuery();
                                 }
                             }
                             return Order;
