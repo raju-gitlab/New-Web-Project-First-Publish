@@ -13,6 +13,10 @@ namespace WP.Business.IBusiness
         LoginDataModel GetLoginData(int Login_id);
         #endregion
 
+        #region Login
+        bool Login(string UserName, string Password);
+        #endregion
+
         #region put
         bool UpdateSettings(LoginDataModel UpdateLogin);
         bool UpdatePassword(LoginDataModel UpdateLogin);

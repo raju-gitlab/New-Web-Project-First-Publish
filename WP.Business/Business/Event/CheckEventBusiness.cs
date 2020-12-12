@@ -38,12 +38,11 @@ namespace WP.Business.Business.Event
         #endregion
 
         #region CheckEventBooking
-        public bool CheckEventBooking(string Email, string PhoneNumber)
+        public bool CheckEventBooking(string EventId , string Email, string PhoneNumber)
         {
-            List<EventRegistrationModel> eventRegistration = new List<EventRegistrationModel>();
             if (Email != null || PhoneNumber != null)
             {
-                return this._checkEventRepository.CheckEventBooking(Email, PhoneNumber);
+                return this._checkEventRepository.CheckEventBooking(EventId ,Email, PhoneNumber);
             }
             else
             {

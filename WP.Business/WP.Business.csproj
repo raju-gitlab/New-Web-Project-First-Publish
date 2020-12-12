@@ -76,6 +76,7 @@
     <Compile Include="Business\Event\EventBusiness.cs" />
     <Compile Include="Business\Master\CartBusiness.cs" />
     <Compile Include="Business\Master\HomePageBusiness.cs" />
+    <Compile Include="Business\Master\HomePage\HomePage2Business.cs" />
     <Compile Include="Business\MembershipBusiness.cs" />
     <Compile Include="Business\Master\ProductBusiness.cs" />
     <Compile Include="Business\OrderAndPayment\OrderBusiness.cs" />
@@ -89,6 +90,7 @@
     <Compile Include="IBusiness\IEvent\IEventBusiness.cs" />
     <Compile Include="IBusiness\IMaster\ICartBusiness.cs" />
     <Compile Include="IBusiness\IMaster\IHomePageBusiness.cs" />
+    <Compile Include="IBusiness\IMaster\IHomePage\IHomePage2Business.cs" />
     <Compile Include="IBusiness\IMembershipBusiness.cs" />
     <Compile Include="IBusiness\IMaster\IProductBusiness.cs" />
     <Compile Include="IBusiness\IOrderAndPayment\IOrderBusiness.cs" />
@@ -108,6 +110,10 @@
     <ProjectReference Include="..\WP.Repository\WP.Repository.csproj">
       <Project>{c29c9ce5-5a41-4f84-9465-440b756c0c9d}</Project>
       <Name>WP.Repository</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\WP.Tools.Utilities\WP.Tools.Utilities.csproj">
+      <Project>{5a0b289a-6a80-444c-82d6-6bdcfecf13a9}</Project>
+      <Name>WP.Tools.Utilities</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup />

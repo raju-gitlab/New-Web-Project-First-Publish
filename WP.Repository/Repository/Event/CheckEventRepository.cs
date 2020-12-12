@@ -49,12 +49,12 @@ namespace WP.Repository.Repository.Event
         }
         #endregion
         /// <summary>
-        /// Check EventBooking For per Useronly once time on a Day
+        /// Check EventBooking For per User only once time on a Single Day
         /// </summary>
         /// <param name="Email"></param>
         /// <param name="PhoneNumber"></param>
         /// <returns></returns>
-        public bool CheckEventBooking(string Email, string PhoneNumber)
+        public bool CheckEventBooking(string EventId,string Email, string PhoneNumber)
         {
            try
             {

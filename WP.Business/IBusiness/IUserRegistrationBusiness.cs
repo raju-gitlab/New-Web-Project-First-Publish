@@ -17,6 +17,7 @@ namespace WP.Business.IBusiness
         #region GetAccountsByPhoneNumber
         UserModel getUserByPhNumber(string PhoneNumber);
         #endregion
+
         #endregion
 
         #region post
@@ -41,7 +42,7 @@ namespace WP.Business.IBusiness
         #endregion
 
         #region Delete
-        int DeleteUserRegistrationDetails(string UserName, string Password);
+        bool DeleteUserRegistrationDetails(string UserName, string Password);
         #endregion
 
         #region Check Credentials

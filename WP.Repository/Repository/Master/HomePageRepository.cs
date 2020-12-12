@@ -1,4 +1,7 @@
-﻿using CommonApplicationFramework.ConfigurationHandling;
+﻿/*This is not a appropriate Home Page api/Repository
+ Check Master/Home/homepageRepository insted of this
+ */
+using CommonApplicationFramework.ConfigurationHandling;
 using System;
 using System.Collections.Generic;
 using System.Configuration;

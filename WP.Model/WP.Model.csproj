@@ -54,6 +54,8 @@
     <Compile Include="Master\CatagoryModel.cs" />
     <Compile Include="Master\ColorModel.cs" />
     <Compile Include="Master\HomePageModel.cs" />
+    <Compile Include="Master\HomePage\ProductEnum.cs" />
+    <Compile Include="Master\HomePage\ProductSearchResultModel.cs" />
     <Compile Include="Master\ProductColor.cs" />
     <Compile Include="Master\ProductModel.cs" />
     <Compile Include="Master\ReviewModel.cs" />

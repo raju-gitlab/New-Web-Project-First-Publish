@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CommonApplicationFramework.ConfigurationHandling;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
@@ -8,11 +9,16 @@ using System.Text;
 using System.Threading.Tasks;
 using WP.Model;
 using WP.Repository.IRepository;
+using WP.Tools.Utilities.PasswordHasher;
 
 namespace WP.Repository.Repository
 {
     public class UserLoginRepository : IUserLoginRepository
     {
+        #region Properties
+        public string PasswordSalt { get; set; }
+        public string Password { get; set; }
+        #endregion
 
         #region get
         public LoginDataModel GetLoginData(int Login_id)
@@ -47,8 +53,54 @@ namespace WP.Repository.Repository
 
         #endregion
 
-           #region Put 
-            public bool UpdateSettings(LoginDataModel UpdateLogin)
+        #region Login
+        public bool Login(string UserName, string LoginPassword)
+        {
+            try
+            {
+                string CS = ConfigurationManager.ConnectionStrings["Dev"].ConnectionString;
+                using (SqlConnection con = new SqlConnection(CS))
+                {
+                    con.Open();
+                    string Query = "SELECT urd.Password , urd.PasswordSalt from UserRegistrationDetails urd WHERE urd.Email = @Email"; //QueryConfig.BookQuerySettings[""].ToString();
+                    using (SqlCommand cmd = new SqlCommand(Query, con))
+                    {
+                        cmd.CommandType = CommandType.Text;
+                        cmd.Parameters.Add(new SqlParameter("@Email", UserName));
+                        SqlDataReader rdr = cmd.ExecuteReader();
+                        if (rdr.Read())
+                        {
+                            Password = rdr["Password"].ToString();
+                            PasswordSalt = rdr["PasswordSalt"].ToString();
+                        }
+                        if (PasswordSalt != null)
+                        {
+                            string userPassword = PasswordHasher.PasswordHash(LoginPassword, PasswordSalt);
+                            if (Password == userPassword)
+                            {
+                                return true;
+                            }
+                            else
+                            {
+                                return false;
+                            }
+                        }
+                        else
+                        {
+                            return false;
+                        }
+                    }
+                }
+            }
+            catch(Exception ex)
+            {
+                throw new Exception("Error", ex);
+            }
+        }
+        #endregion
+
+        #region Put 
+        public bool UpdateSettings(LoginDataModel UpdateLogin)
             {
             string CS = ConfigurationManager.ConnectionStrings["Dev"].ToString();
 

@@ -5,9 +5,11 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Web;
 using System.Web.Http;
 using WP.Business.IBusiness;
 using WP.Model;
+using WP.Tools.Utilities.ImageUpload;
 
 namespace WebProject.Controllers
 {
@@ -189,14 +191,13 @@ namespace WebProject.Controllers
 
         #region Delete
         [HttpDelete]
-        [Route("api/Details/UserName/Password")]
         //public IHttpActionResult DeleteDetails([FromBody]RemoveUserRegister removeUser)
         public IHttpActionResult DeleteDetails([FromBody]string UserName , string Password)
         {
             try
             {
-                int result = this._userRegistrationBusiness.DeleteUserRegistrationDetails(UserName , Password);
-                if (result > 1)
+                bool result = this._userRegistrationBusiness.DeleteUserRegistrationDetails(UserName , Password);
+                if (result == true )
                     return this.Content(HttpStatusCode.OK, "Data Deleted Successfully");
                 else
                     return this.Content(HttpStatusCode.BadRequest, "Data Not Deleted");
@@ -206,6 +207,24 @@ namespace WebProject.Controllers
                 throw new Exception("Error in Controller", ex);
             }
         }
+        #endregion
+
+        #region try
+        [HttpPost]
+        public IHttpActionResult imageupload(HttpPostedFileBase file)
+        {
+            try
+            {
+                string name = ImageUpload.Upload(file);
+                return this.Content(HttpStatusCode.OK, name);
+            }
+            catch (Exception ex)
+            {
+
+                throw;
+            }
+        }
+
         #endregion
     }
 }

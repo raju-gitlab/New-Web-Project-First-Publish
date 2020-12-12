@@ -32,7 +32,9 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -42,11 +44,17 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Class1.cs" />
+    <Compile Include="DBManager\DBManager.cs" />
     <Compile Include="EmailSender\EmailSender.cs" />
+    <Compile Include="Enums\EventEnums.cs" />
     <Compile Include="Exceptions\BaseExceptions.cs" />
     <Compile Include="Exceptions\BusinessExceptionEXCS.cs" />
+    <Compile Include="File Reader\StreamReader.cs" />
+    <Compile Include="ImageUpload\ImageUpload.cs" />
+    <Compile Include="ImageUpload\ImageUploadModel.cs" />
     <Compile Include="PasswordHasher\PasswordHasher.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

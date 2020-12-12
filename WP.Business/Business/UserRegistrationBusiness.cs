@@ -104,7 +104,7 @@ namespace WP.Business.Business
         #endregion
 
         #region Delete Data
-        public int DeleteUserRegistrationDetails(string UserName, string Password)
+        public bool DeleteUserRegistrationDetails(string UserName, string Password)
         {
             return this._registerUserRepository.DeleteUserRegistrationDetails(UserName , Password);
         }

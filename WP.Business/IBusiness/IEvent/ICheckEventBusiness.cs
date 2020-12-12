@@ -11,7 +11,7 @@ namespace WP.Business.IBusiness.IEvent
     {
         #region CheckEvent
         bool CheckEventAvailability(string EventGuid);
-        bool CheckEventBooking(string Email, string PhoneNumber);
+        bool CheckEventBooking(string EventId , string Email, string PhoneNumber);
         #endregion
     }
 }

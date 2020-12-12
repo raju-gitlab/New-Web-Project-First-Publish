@@ -18,6 +18,7 @@ namespace WP.Repository.IRepository
         UserModel getUserByPhNumber(string PhoneNumber);
         #endregion
 
+
         #endregion
 
         #region Post
@@ -47,7 +48,9 @@ namespace WP.Repository.IRepository
         #endregion
 
         #region Delete
-        int DeleteUserRegistrationDetails(string UserName, string Password);
+        #region DeleteUserAccount
+        bool DeleteUserRegistrationDetails(string UserName, string Password); 
+        #endregion
         #endregion
 
         #region Check Credentials

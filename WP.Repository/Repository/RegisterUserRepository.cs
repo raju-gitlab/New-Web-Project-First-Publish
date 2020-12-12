@@ -86,6 +86,7 @@ namespace WP.Repository.Repository
             }
         }
         #endregion
+
         #endregion
 
         #region post
@@ -251,7 +252,7 @@ namespace WP.Repository.Repository
                         int i = cmd.ExecuteNonQuery();
                         if(i > 0)
                         {
-                            EmailSender.SendForgetPasswordEmail(Email, "Forget Passsword", guid);
+                            EmailSender.SendForgetPasswordEmail(Email, "ForgetEmail", guid);
                             return true;
                         }
                         else
@@ -386,28 +387,27 @@ namespace WP.Repository.Repository
         #endregion
 
         #region Delete
-        public int DeleteUserRegistrationDetails(string UserName, string Password)
+        public bool DeleteUserRegistrationDetails(string UserName, string Password)
         {
             try
             {
                 string Connection = ConfigurationManager.ConnectionStrings["dev"].ToString();
                 using (SqlConnection con = new SqlConnection(Connection))
                 {
-                    SqlCommand cmd = new SqlCommand("RemoveLoginDetails", con);
-
-                    cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.Parameters.AddWithValue("@UserName", UserName);
-                    cmd.Parameters.AddWithValue("@Password", Password);
-                  //  cmd.Parameters.AddWithValue("@Password", Password);
-
                     con.Open();
-                    int i = cmd.ExecuteNonQuery();
-                    con.Close();
+                    using (SqlCommand cmd = new SqlCommand("RemoveLoginDetails", con))
+                    {
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        cmd.Parameters.AddWithValue("@UserName", UserName);
+                        cmd.Parameters.AddWithValue("@Password", Password);
+                        //cmd.Parameters.AddWithValue("@Password", Password);
+                        int i = cmd.ExecuteNonQuery();
+                        if (i > 0)
+                            return true;
+                        else
+                            return false;
 
-                    if (i > 0)
-                        return 1;
-                    else
-                        return 0;
+                    }
                 }
             }
             catch(Exception ex)

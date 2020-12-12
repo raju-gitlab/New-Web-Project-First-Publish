@@ -12,6 +12,9 @@ namespace WP.Repository.IRepository
         #region Get
         LoginDataModel GetLoginData(int Login_id);
         #endregion
+        #region Login
+        bool Login(string UserName, string Password);
+        #endregion
 
         #region Put
         bool UpdateSettings(LoginDataModel UpdateLogin);

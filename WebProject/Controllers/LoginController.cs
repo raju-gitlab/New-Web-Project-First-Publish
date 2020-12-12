@@ -24,6 +24,8 @@ namespace WebProject.Controllers
         }
 
         #endregion
+
+        #region Get
         #region get (user logn details)
         [HttpGet]
         public IHttpActionResult GetUserData(int Login_id)
@@ -31,19 +33,39 @@ namespace WebProject.Controllers
             try
             {
                 LoginDataModel loginData = this._userLoginBusiness.GetLoginData(Login_id);
-                if(loginData != null)
+                if (loginData != null)
                 {
                     return this.Content(HttpStatusCode.OK, loginData);
                 }
                 return this.Content(HttpStatusCode.NotFound, "not found your request");
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 throw new Exception("something went wrong", ex);
             }
         }
         #endregion
 
+        #region User Login
+        [HttpGet]
+        public IHttpActionResult Login(string UserName, string Password)
+        {
+            try
+            {
+                bool result = this._userLoginBusiness.Login(UserName, Password);
+                if(result == true)
+                {
+                    return this.Content(HttpStatusCode.OK, "Login Success");
+                }
+                return this.Content(HttpStatusCode.BadRequest, "Login faild");
+            }
+            catch(Exception ex)
+            {
+                throw new Exception("Error", ex);
+            }
+        }
+        #endregion
+        #endregion
 
         #region put
         #region put(Update Details)

@@ -25,12 +25,14 @@ namespace WP.Business.Business.Event
         #endregion
 
         #region GET
+
         #region GetAllRegistrationDetailsByEventId
         public List<EventRegistrationModel> GetByEventId(string EventGuid)
         {
             return this._eventBookingRepository.GetByEventId(EventGuid);
         }
         #endregion
+
         #endregion
 
         #region POST
@@ -38,13 +40,13 @@ namespace WP.Business.Business.Event
         #region BookEventTicket
         public int BookEventTicket(EventRegistrationModel addNewBooking)
         {
-            if(this._checkEventRepository.CheckEventBooking(addNewBooking.Email,addNewBooking.PhoneNumber))
+            if(this._checkEventRepository.CheckEventBooking(addNewBooking.EventId,addNewBooking.Email,addNewBooking.PhoneNumber))
             {
                 return this._eventBookingRepository.BookEventTicket(addNewBooking);
             }
             else
             {
-                throw new Exception("Event Already Registrated In THIS Credentials");
+                throw new Exception("You Already Booked This Event.You Can Book Another Event");
             }
         }
         #endregion

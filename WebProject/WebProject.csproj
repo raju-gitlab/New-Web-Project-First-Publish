@@ -225,6 +225,7 @@
     <Compile Include="Controllers\Image\ImageController.cs" />
     <Compile Include="Controllers\Master\CartController.cs" />
     <Compile Include="Controllers\Master\HomePageController.cs" />
+    <Compile Include="Controllers\Master\HomePage\HomePage2Controller.cs" />
     <Compile Include="Controllers\Master\ProductController.cs" />
     <Compile Include="Controllers\Order And Payment\OrderController.cs" />
     <Compile Include="Controllers\SuscriptionControl\MembershipController.cs" />
@@ -281,7 +282,9 @@
     <Content Include="Areas\HelpPage\Views\Help\Api.cshtml" />
     <Content Include="StyleSheet1.css" />
     <Content Include="WebForm1.aspx" />
-    <Content Include="App_Data\Api.config" />
+    <Content Include="App_Data\Api.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="App_Data\MessageConfigurations.Config" />
     <Content Include="App_Data\QueryConfigurations.Config">
       <SubType>Designer</SubType>

@@ -32,6 +32,7 @@ namespace WP.Model
         public string Date { get; set; }
         public string Image { get; set; }
         public EventRegistrationModel Registration { get; set; }
+        public string EventStatus { get; set; }
     }
      
 }
