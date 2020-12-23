@@ -31,6 +31,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="StackExchange.Redis">
+      <HintPath>..\packages\Dependency\StackExchange.Redis.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
@@ -44,7 +47,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Class1.cs" />
-    <Compile Include="DBManager\DBManager.cs" />
+    <Compile Include="Connections\DBManager.cs" />
+    <Compile Include="Connections\RedisConnection.cs" />
     <Compile Include="EmailSender\EmailSender.cs" />
     <Compile Include="Enums\EventEnums.cs" />
     <Compile Include="Exceptions\BaseExceptions.cs" />
