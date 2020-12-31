@@ -31,7 +31,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="CommonApplicationFramework">
+    <Reference Include="CommonApplicationFramework, Version=1.0.0.1, Culture=neutral, PublicKeyToken=29662cdbed61eec8, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Dependency\CommonApplicationFramework.dll</HintPath>
     </Reference>
     <Reference Include="System" />
@@ -45,6 +46,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Authentication And Auhtorization\TokensManager.cs" />
+    <Compile Include="Authentication And Auhtorization\UserDataModel.cs" />
     <Compile Include="BaseModel.cs" />
     <Compile Include="CheckUserSubscriptionModel.cs" />
     <Compile Include="Event\EventModel.cs" />

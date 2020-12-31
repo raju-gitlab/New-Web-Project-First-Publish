@@ -31,6 +31,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.12.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="StackExchange.Redis">
       <HintPath>..\packages\Dependency\StackExchange.Redis.dll</HintPath>
     </Reference>
@@ -46,6 +49,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Authentication and Authorization\AuthenticateConcrete.cs" />
+    <Compile Include="Authentication and Authorization\IAuthenticate.cs" />
     <Compile Include="Class1.cs" />
     <Compile Include="Connections\DBManager.cs" />
     <Compile Include="Connections\RedisConnection.cs" />
@@ -56,9 +61,18 @@
     <Compile Include="File Reader\StreamReader.cs" />
     <Compile Include="ImageUpload\ImageUpload.cs" />
     <Compile Include="ImageUpload\ImageUploadModel.cs" />
+    <Compile Include="PasswordHasher\EncryptionLibrary.cs" />
     <Compile Include="PasswordHasher\PasswordHasher.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\WP.Model\WP.Model.csproj">
+      <Project>{B044C499-01B9-468B-A798-F811AFCC5EC0}</Project>
+      <Name>WP.Model</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

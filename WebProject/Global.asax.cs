@@ -1,4 +1,5 @@
-﻿using CommonApplicationFramework.ConfigurationHandling;
+﻿
+using CommonApplicationFramework.ConfigurationHandling;
 using System;
 using System.Collections.Generic;
 using System.Linq;

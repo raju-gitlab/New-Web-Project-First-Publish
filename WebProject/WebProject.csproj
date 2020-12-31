@@ -45,7 +45,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="CommonApplicationFramework">
+    <Reference Include="CommonApplicationFramework, Version=1.0.0.1, Culture=neutral, PublicKeyToken=29662cdbed61eec8, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Dependency\CommonApplicationFramework.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Bcl.AsyncInterfaces, Version=5.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
@@ -255,6 +256,7 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\Auhtentication And Authorization\AuthenticateController.cs" />
     <Compile Include="Controllers\ChangePasswordController.cs" />
     <Compile Include="Controllers\CheckUserSubscriptionController.cs" />
     <Compile Include="Controllers\Event\EventBookingController.cs" />
@@ -270,6 +272,8 @@
     <Compile Include="Controllers\SuscriptionControl\MembershipController.cs" />
     <Compile Include="Controllers\UserRegisterController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
+    <Compile Include="Filter\APIAuthorizeAttribute.cs" />
+    <Compile Include="Filter\ValidateSessionAttribute.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>

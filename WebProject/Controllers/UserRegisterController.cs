@@ -78,12 +78,12 @@ namespace WebProject.Controllers
         #endregion
 
         #region post
+        #region AddNewUser
         /// <summary>
         /// New User Registration
         /// </summary>
         /// <param name="userRegister"></param>
         /// <returns></returns>
-        #region AddNewUser
         [HttpPost]
         public IHttpActionResult RegNewUser([FromBody]UserRegisterDataModel userRegister)
         {
@@ -221,7 +221,7 @@ namespace WebProject.Controllers
             catch (Exception ex)
             {
 
-                throw;
+                throw new Exception("error",ex);
             }
         }
 

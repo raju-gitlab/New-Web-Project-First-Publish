@@ -31,7 +31,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="CommonApplicationFramework">
+    <Reference Include="CommonApplicationFramework, Version=1.0.0.1, Culture=neutral, PublicKeyToken=29662cdbed61eec8, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Dependency\CommonApplicationFramework.dll</HintPath>
     </Reference>
     <Reference Include="System" />
@@ -74,7 +75,9 @@
     <Compile Include="Repository\RegisterUserRepository.cs" />
     <Compile Include="Repository\UserLoginRepository.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="app.config" />
+  </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\WP.Model\WP.Model.csproj">
       <Project>{b044c499-01b9-468b-a798-f811afcc5ec0}</Project>

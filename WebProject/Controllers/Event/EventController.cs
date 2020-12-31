@@ -4,12 +4,14 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using WebProject.Filters;
 using WP.Business.IBusiness;
 using WP.Model;
 using WP.Tools.Utilities.Exceptions;
 
 namespace WebProject.Controllers
 {
+    [APIAuthorizeAttribute]
     public class EventController : ApiController
     {
         #region Variable Declaration
