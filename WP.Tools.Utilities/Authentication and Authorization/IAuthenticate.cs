@@ -6,7 +6,7 @@ namespace WebProject.Repository
 {
     public interface IAuthenticate
     {
-        UserDataModel GetClientRegsDetailsbyCLientEmailId(string EmailId);
+        UserDataModel GetClientRegsDetailsbyCLientEmailId(string EmailId , string Password);
         bool ValidateKey(string userEMail);
         bool IsTokenAlreadyExists(string UserGuid);
         int DeleteGenerateToken(string UserGuid);

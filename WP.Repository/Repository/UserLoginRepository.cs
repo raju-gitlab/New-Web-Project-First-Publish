@@ -54,7 +54,7 @@ namespace WP.Repository.Repository
         #endregion
 
         #region Login
-        public bool Login(string UserName, string LoginPassword)
+        public bool Login(string EmailId, string LoginPassword)
         {
             try
             {
@@ -62,13 +62,13 @@ namespace WP.Repository.Repository
                 using (SqlConnection con = new SqlConnection(CS))
                 {
                     con.Open();
-                    string Query = "SELECT urd.Password , urd.PasswordSalt from UserRegistrationDetails urd WHERE urd.Email = @Email"; //QueryConfig.BookQuerySettings[""].ToString();
+                    string Query = "SELECT Password , PasswordSalt from UserRegistrationDetails WHERE Email = @Email"; //QueryConfig.BookQuerySettings[""].ToString();
                     using (SqlCommand cmd = new SqlCommand(Query, con))
                     {
                         cmd.CommandType = CommandType.Text;
-                        cmd.Parameters.Add(new SqlParameter("@Email", UserName));
+                        cmd.Parameters.Add(new SqlParameter("@Email", EmailId));
                         SqlDataReader rdr = cmd.ExecuteReader();
-                        if (rdr.Read())
+                        if(rdr.Read())
                         {
                             Password = rdr["Password"].ToString();
                             PasswordSalt = rdr["PasswordSalt"].ToString();

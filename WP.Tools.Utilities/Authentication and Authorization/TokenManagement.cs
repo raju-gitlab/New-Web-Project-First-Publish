@@ -1,27 +1,24 @@
 ﻿using MusicAPIStore.Repository;
 using System;
+using System.Collections.Generic;
 using System.Configuration;
+using System.Linq;
 using System.Net;
 using System.Net.Http;
-using System.Web.Http;
+using System.Text;
+using System.Threading.Tasks;
 using WebProject.Models;
-using WebProject.Repository;
 using WP.Model.Authentication_And_Auhtorization;
 
-namespace MusicAPIStore.Controllers
+namespace WP.Tools.Utilities.Authentication_and_Authorization
 {
-    public class AuthenticateController : ApiController
+    public class TokenManagement
     {
-        IAuthenticate _IAuthenticate;
-        public AuthenticateController()
-        {
-            _IAuthenticate = new AuthenticateConcrete();
-        }
+        AuthenticateConcrete _IAuthenticate = new AuthenticateConcrete();
 
-        // POST: api/Authenticate
-        public HttpResponseMessage Authenticate([FromBody]UserDataModel registerUser)
+        public HttpResponseMessage Authenticate(string Email, string Password)
         {
-            if (string.IsNullOrEmpty(registerUser.Email) && string.IsNullOrEmpty(registerUser.Password))
+            if (string.IsNullOrEmpty(Email) && string.IsNullOrEmpty(Password))
             {
                 var message = new HttpResponseMessage(HttpStatusCode.NotAcceptable);
                 message.Content = new StringContent("Not Valid Request");
@@ -29,10 +26,10 @@ namespace MusicAPIStore.Controllers
             }
             else
             {
-                if (_IAuthenticate.ValidateKey(registerUser.Email))
+                if (_IAuthenticate.ValidateKey(Email))
                 {
                     UserDataModel User = new UserDataModel();
-                    var UserDetails = _IAuthenticate.GetClientRegsDetailsbyCLientEmailId(registerUser.Email , registerUser.Password);
+                    var UserDetails = _IAuthenticate.GetClientRegsDetailsbyCLientEmailId(Email , Password);
 
                     if (UserDetails == null)
                     {
@@ -63,27 +60,26 @@ namespace MusicAPIStore.Controllers
             }
         }
 
-      
-        [NonAction]
+        
         private HttpResponseMessage GenerateandSaveToken(UserDataModel User)
         {
             //See  that steps
             var IssuedOn = DateTime.Now;
-            var newToken = _IAuthenticate.GenerateToken(IssuedOn , User);
+            var newToken = _IAuthenticate.GenerateToken(IssuedOn, User);
             TokensManager token = new TokensManager();
             token.TokenID = 0;
             token.TokenKey = newToken;
             token.IssuedOn = IssuedOn;
             token.ExpiresOn = DateTime.Now.AddMinutes(Convert.ToInt32(ConfigurationManager.AppSettings["TokenExpiry"]));
             token.CreatedOn = DateTime.Now;
-            var result = _IAuthenticate.InsertToken(token , User);
+            var result = _IAuthenticate.InsertToken(token, User);
 
             if (result == true)
             {
                 HttpResponseMessage response = new HttpResponseMessage();
                 response.Headers.Add("Access-Token", newToken);
                 response.Headers.Add("TokenExpiry", ConfigurationManager.AppSettings["TokenExpiry"]);
-                response = Request.CreateResponse(HttpStatusCode.OK, response);
+                response = new HttpResponseMessage(HttpStatusCode.OK);
                 //response.Headers.Add("Access-Control-Expose-Headers", "Token,TokenExpiry");
                 return response;
             }

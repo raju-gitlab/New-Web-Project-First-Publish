@@ -7,6 +7,7 @@ using System.Net.Http;
 using System.Web.Http;
 using WP.Business.IBusiness;
 using WP.Model;
+using WP.Tools.Utilities.Authentication_and_Authorization;
 #endregion
 
 namespace WebProject.Controllers
@@ -48,13 +49,15 @@ namespace WebProject.Controllers
 
         #region User Login
         [HttpGet]
-        public IHttpActionResult Login(string UserName, string Password)
+        public IHttpActionResult Login(string Email, string Password)
         {
             try
             {
-                bool result = this._userLoginBusiness.Login(UserName, Password);
+                TokenManagement token = new TokenManagement();
+                bool result = this._userLoginBusiness.Login(Email, Password);
                 if(result == true)
                 {
+                    token.Authenticate(Email,Password);
                     return this.Content(HttpStatusCode.OK, "Login Success");
                 }
                 return this.Content(HttpStatusCode.BadRequest, "Login faild");

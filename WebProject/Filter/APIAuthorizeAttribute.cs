@@ -59,12 +59,12 @@ namespace WebProject.Filters
                     using (con = new SqlConnection(CS))
                     {
                         con.Open();
-                        string query = "";
+                        string query = CommonApplicationFramework.ConfigurationHandling.QueryConfig.BookQuerySettings["CheckUserExistense"].ToString();
                         using (cmd = new SqlCommand(query, con))
                         {
                             cmd.CommandType = CommandType.Text;
-                            cmd.Parameters.Add(new SqlParameter("@UserGuid", UserGuid));
-                            cmd.Parameters.Add(new SqlParameter("@Email", Email));
+                            //cmd.Parameters.Add(new SqlParameter("@UserGuid", UserGuid));
+                            cmd.Parameters.Add(new SqlParameter("@EmailID", Email));
                             int i = Convert.ToInt32(cmd.ExecuteScalar());
                             if (i > 0)
                             {

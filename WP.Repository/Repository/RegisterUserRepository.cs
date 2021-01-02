@@ -95,7 +95,7 @@ namespace WP.Repository.Repository
         {
             try
             {
-                string guid = Guid.NewGuid().ToString().Replace("-", string.Empty);
+                string guid = Guid.NewGuid().ToString().Replace("-", string.Empty).ToLower();
                 string Salt = PasswordHasher.SaltGenerator(20);
                 string password = PasswordHasher.PasswordHash(registerData.Password, Salt);
                 string CS = ConfigurationManager.ConnectionStrings["Dev"].ConnectionString;
@@ -122,7 +122,8 @@ namespace WP.Repository.Repository
                         cmd.Parameters.AddWithValue("@Region", registerData.Region);
                         cmd.Parameters.AddWithValue("@ZipCode", registerData.ZipCode);
                         cmd.Parameters.AddWithValue("@Country", registerData.Country);
-                        // cmd.Parameters.AddWithValue("@RegistrationTime", registerData.RegistrationTime);
+                        cmd.Parameters.AddWithValue("@UserGuid", Guid.NewGuid().ToString().ToLower());
+                        cmd.Parameters.AddWithValue("@RegistrationTime", DateTime.UtcNow);
                         int i = cmd.ExecuteNonQuery();
                         if (i > 0)
                         {

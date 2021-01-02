@@ -11,22 +11,29 @@ using static WebProject.AES256Encryption.EncryptionLibrary;
 using WebProject.Models;
 using WP.Model.Authentication_And_Auhtorization;
 using WebProject.AES256Encryption;
+using CommonApplicationFramework.ConfigurationHandling;
+using WP.Tools.Utilities.PasswordHasher;
+using System.Net.Http;
+using System.Net;
+
 namespace MusicAPIStore.Repository
 {
     public class AuthenticateConcrete : IAuthenticate
     {
 
-        public UserDataModel GetClientRegsDetailsbyCLientEmailId(string EmailId)
+        public UserDataModel GetClientRegsDetailsbyCLientEmailId(string EmailId ,string password)
         {
             try
             {
                 UserDataModel user = new UserDataModel();
                 string CS = ConfigurationManager.ConnectionStrings["Dev"].ConnectionString;
-                using (SqlConnection con = new SqlConnection(CS))
+                SqlConnection con;
+                SqlCommand cmd;
+                using (con = new SqlConnection(CS))
                 {
                     con.Open();
-                    string query = "";//QueryConfig.BookQuerySettings["GetClientRegsDetails"].ToString();
-                    using (SqlCommand cmd = new SqlCommand(query,con))
+                    string query = QueryConfig.BookQuerySettings["GetClientRegsDetails"].ToString();
+                    using (cmd = new SqlCommand(query,con))
                     {
                         cmd.CommandType = CommandType.Text;
                         cmd.Parameters.Add(new SqlParameter("@EmailId", EmailId));
@@ -36,7 +43,7 @@ namespace MusicAPIStore.Repository
                             user.Email = rdr["Email"].ToString();
                             user.Password = rdr["Password"].ToString();
                             user.UserName = rdr["UserName"].ToString();
-                            user.UserGuid = rdr["UserGuid"].ToString();
+                            user.UserGuid = rdr["UserGuid"].ToString().ToUpper();
                             user.PasswordSalt = rdr["PasswordSalt"].ToString();
                             user.FirstName = rdr["FirstName"].ToString();
                             user.LastName = rdr["LastName"].ToString();
@@ -44,7 +51,15 @@ namespace MusicAPIStore.Repository
                         }
                         if(user != null)
                         {
-                            return user;
+                            string userpassword = PasswordHasher.PasswordHash(password , user.PasswordSalt);
+                            if(userpassword == user.Password)
+                            {
+                                return user;
+                            }
+                            else
+                            {
+                                return null;
+                            }
                         }
                         else
                         {
@@ -67,7 +82,7 @@ namespace MusicAPIStore.Repository
                 using (SqlConnection con = new SqlConnection(CS))
                 {
                     con.Open();
-                    string Query = "";
+                    string Query = QueryConfig.BookQuerySettings["CheckUserExistense"].ToString();
                     using (SqlCommand cmd = new SqlCommand(Query,con))
                     {
                         cmd.CommandType = CommandType.Text;
@@ -123,7 +138,7 @@ namespace MusicAPIStore.Repository
                 using (SqlConnection con = new SqlConnection(CS))
                 {
                     con.Open();
-                    string query = "delete from TokensManager WHERE UserId IN (SELECT UserID from RegisterUser WHERE UserGuid = @UserGuid)";
+                    string query = QueryConfig.BookQuerySettings["DeleteExistingToken"].ToString();
                     using (SqlCommand cmd = new SqlCommand(query, con))
                     {
                         cmd.CommandType = CommandType.Text;
@@ -187,10 +202,11 @@ namespace MusicAPIStore.Repository
                 using (SqlConnection con = new SqlConnection(CS))
                 {
                     con.Open();
-                    string query = "INSERT INTO TokensManager(TokenKey, IssuedOn, ExpiresOn, CreatedOn, UserId) VALUES(@TokenKey, @IssuedOn, @ExpiresOn, @CreatedOn, @UserId)";
+                    string query = QueryConfig.BookQuerySettings["AddNewToken"].ToString();
                     using (SqlCommand cmd = new SqlCommand(query, con))
                     {
                         cmd.CommandType = CommandType.Text;
+                        cmd.Parameters.Add(new SqlParameter("UserGuid", User.UserGuid));
                         cmd.Parameters.AddWithValue("@UserId", token.UserId);
                         cmd.Parameters.AddWithValue("@CreatedOn", token.CreatedOn);
                         cmd.Parameters.AddWithValue("@ExpiresOn", token.ExpiresOn);
