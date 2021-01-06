@@ -166,6 +166,7 @@ namespace MusicAPIStore.Repository
         {
             try
             {
+                RoleModel role = new RoleModel();
                 string randomnumber =
                    string.Join(":", new string[]
                    { 
@@ -177,7 +178,8 @@ namespace MusicAPIStore.Repository
                        User.UserName,
                        User.UserGuid,
                        User.FirstName,
-                       User.LastName
+                       User.LastName,
+                       role.RolesName
                    });
 
                 return EncryptionLibrary.EncryptText(randomnumber);

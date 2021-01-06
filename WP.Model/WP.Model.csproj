@@ -48,6 +48,7 @@
   <ItemGroup>
     <Compile Include="Authentication And Auhtorization\TokensManager.cs" />
     <Compile Include="Authentication And Auhtorization\UserDataModel.cs" />
+    <Compile Include="Authentication And Auhtorization\UserRoleModel.cs" />
     <Compile Include="BaseModel.cs" />
     <Compile Include="CheckUserSubscriptionModel.cs" />
     <Compile Include="Event\EventModel.cs" />

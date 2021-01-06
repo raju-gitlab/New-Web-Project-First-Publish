@@ -74,7 +74,7 @@ namespace MusicAPIStore.Controllers
             token.TokenID = 0;
             token.TokenKey = newToken;
             token.IssuedOn = IssuedOn;
-            token.ExpiresOn = DateTime.Now.AddMinutes(Convert.ToInt32(ConfigurationManager.AppSettings["TokenExpiry"]));
+            token.ExpiresOn = DateTime.Now.AddDays(Convert.ToInt32(ConfigurationManager.AppSettings["TokenExpiry"]));
             token.CreatedOn = DateTime.Now;
             var result = _IAuthenticate.InsertToken(token , User);
 

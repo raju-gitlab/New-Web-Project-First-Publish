@@ -56,6 +56,7 @@
     <Compile Include="IRepository\IMaster\IHomePageRepository.cs" />
     <Compile Include="IRepository\IMaster\IHomePage\IHomePage2Repository.cs" />
     <Compile Include="IRepository\IMaster\IProductRepository.cs" />
+    <Compile Include="IRepository\IMaster\IRoleRepository.cs" />
     <Compile Include="IRepository\IMembershipRepository.cs" />
     <Compile Include="IRepository\IOrderAndPayment\IOrderRepository.cs" />
     <Compile Include="IRepository\IRegisterUserRepository.cs" />
@@ -70,6 +71,7 @@
     <Compile Include="Repository\Master\HomePageRepository.cs" />
     <Compile Include="Repository\Master\HomePage\HomePage2Repository.cs" />
     <Compile Include="Repository\Master\ProductRepository.cs" />
+    <Compile Include="Repository\Master\RoleRepository.cs" />
     <Compile Include="Repository\MembershipRepository.cs" />
     <Compile Include="Repository\OrderAndPayment\OrderRepository.cs" />
     <Compile Include="Repository\RegisterUserRepository.cs" />

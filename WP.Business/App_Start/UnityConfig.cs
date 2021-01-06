@@ -63,6 +63,10 @@ namespace WP.Business
             container.RegisterType<IOrderRepository, OrderRepository>();
             container.RegisterType<IOrderBusiness, OrderBusiness>();
 
+            container.RegisterType<IRoleRepository, RoleRepository>();
+            container.RegisterType<IRoleBusiness, RoleBusiness>();
+
+
             //GlobalConfiguration.Configuration.DependencyResolver = new UnityDependencyResolver(container);
             config.DependencyResolver = new UnityDependencyResolver(container);
         }

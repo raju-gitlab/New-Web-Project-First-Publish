@@ -13,11 +13,15 @@ namespace WebProject.Filters
 {
     public class APIAuthorizeAttribute : AuthorizeAttribute
     {
+        public string Role { get; set; }
         public override void OnAuthorization(HttpActionContext filterContext)
         {
             if (Authorize(filterContext))
             {
-                return;
+                if (validUserRole(filterContext , Role))
+                {
+                    return;
+                }
             }
             HandleUnauthorizedRequest(filterContext);
         }
@@ -50,6 +54,7 @@ namespace WebProject.Filters
                     var UserGuid = Convert.ToString(parts[6]);
                     var FirstName = Convert.ToString(parts[7]);
                     var LastName = Convert.ToString(parts[8]);
+                    var RolesName = Convert.ToString(parts[9]);
 
                     string CS = ConfigurationManager.ConnectionStrings["Dev"].ConnectionString;
                     UserDataModel userData = new UserDataModel();
@@ -89,25 +94,25 @@ namespace WebProject.Filters
                         }
                     }
                     if (tokens.ExpiresOn != null)
-                        {
-                            // Validating Time
-                            /*var ExpiresOn = (from token in db.TokensManager
-                                             where token.CompanyID == CompanyID
-                                             select token.ExpiresOn).FirstOrDefault();*/
+                    {
+                        // Validating Time
+                        /*var ExpiresOn = (from token in db.TokensManager
+                                         where token.CompanyID == CompanyID
+                                         select token.ExpiresOn).FirstOrDefault();*/
 
-                            if ((DateTime.Now > tokens.ExpiresOn))
-                            {
-                                validFlag = false;
-                            }
-                            else
-                            {
-                                validFlag = true;
-                            }
-                        }
-                        else
+                        if ((DateTime.Now > tokens.ExpiresOn))
                         {
                             validFlag = false;
                         }
+                        else
+                        {
+                            validFlag = true;
+                        }
+                    }
+                    else
+                    {
+                        validFlag = false;
+                    }
                 }
                 return validFlag;
             }
@@ -116,6 +121,39 @@ namespace WebProject.Filters
                 throw new Exception("Error", ex);
             }
         }
+        private bool validUserRole(HttpActionContext filterContext, string Role)
+        {
+            try
+            {
+                var encodedString = filterContext.Request.Headers.GetValues("Token").First();
 
+                bool validFlag = false;
+                if (!string.IsNullOrEmpty(encodedString))
+                {
+                    var key = EncryptionLibrary.DecryptText(encodedString);
+
+                    string[] parts = key.Split(new char[] { ':' });
+
+                    var RolesUser = parts[9];
+                    if (RolesUser == Role)
+                    {
+                        return true;
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+
+        }
     }
 }
